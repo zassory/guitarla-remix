@@ -1,13 +1,17 @@
 import {
-   Meta,
-   Links,
-   Outlet,
-   Scripts,
-   LiveReload
+   Meta, //principio del html
+   Links, //principio del html
+   Outlet,//El render
+   Scripts,//
+   LiveReload,
+   useCatch,
+   Link
 } from '@remix-run/react';
 import styles from '~/styles/index.css';
 import { Header } from '~/components/header';
+
 import { Footer } from '~/components/footer';
+import { isErrorResponse } from '@remix-run/react/dist/data';
 
 export const meta = () => {
     return (
@@ -70,5 +74,25 @@ const Document = ({ children }) => {
                 <LiveReload />
             </body>
         </html>
+    )
+}
+
+/** Manejo de errores */
+export const CatchBoundary = () => {
+    const error = useCatch()
+    return (
+        <Document>
+            <p className='error'>{error.status} { error.statusText }</p>
+            <Link className='error-enlace' to="/">Tal vez quieras volver a la página principal</Link>
+        </Document>
+    )
+}
+
+export const ErrorBoundary = ({error}) => {
+    return (
+        <Document>
+            <p className='error'>{error.status} { error.statusText }</p>
+            <Link className='error-enlace' to="/">Tal vez quieras volver a la página principal</Link>
+        </Document>
     )
 }

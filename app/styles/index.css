@@ -110,11 +110,42 @@
   .footer .navegacion a ,
   .footer .copyright {
     color: var(--white);
-    font-size: 2.8rem;
+    font-size:2.2rem;
     text-decoration: none;
     font-weight: 700;
   }
   .footer .copyright {
-    text-align: center;
-    font-size:2.2rem;
+    text-align: center;    
   }
+  
+  .error,
+  .error-enlace {
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 5rem;
+  }
+
+  .error-enlace {
+    display: block;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.8rem;
+  }
+
+  .enlace {
+    margin-top: 2rem;
+    display: block;
+    background-color: var(--black);
+    color: var(--white);
+    text-decoration: none;
+    padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition-property: background-color;
+    transition-duration: 300ms;
+}
+.enlace:hover {
+    background-color: var(--primary);
+}
