@@ -3,7 +3,7 @@ import { getGuitarra } from '~/models/guitarras.server';
 import styles from '~/styles/guitarras.css';
 
 //Es el parametro que recibe
-export const loader = async({params}) => {       
+export const loader = async({params}) => {
     const { guitarraUrl } = params;
     const guitarra = await getGuitarra( guitarraUrl );
 
@@ -44,10 +44,9 @@ export const links = () => {
 
 
 const Guitarra = () => {
-
-    //guitarra.data[0].attributes.nombre
-    const guitarra = useLoaderData();
-    const { nombre , descripcion , imagen , precio } = guitarra.data[0].attributes
+    
+  const guitarra = useLoaderData();
+  const { nombre , descripcion , imagen , precio } = guitarra.data[0].attributes
 
   return (
     <main className='contenedor guitarra'>
