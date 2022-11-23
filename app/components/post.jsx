@@ -3,8 +3,7 @@ import { formatearFecha } from '~/utils/helpers';
 
 export const Post = ({post}) => {
 
-  const { contenido , imagen , titulo , url , publishedAt } = post
-  console.log('Pasa por el post');
+  const { contenido , imagen , titulo , url , publishedAt } = post  
 
   return (
     <article className="contenedor post">

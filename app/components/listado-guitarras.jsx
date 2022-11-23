@@ -1,6 +1,7 @@
 import { Guitarra } from './guitarra';
 
 export const ListadoGuitarras = ({ guitarras }) => {
+  
   return (
     <>
         <h2 className='heading'>Nuestra Colección</h2>
