@@ -23,7 +23,7 @@ export const Navegacion = () => {
                 </Link>
                 <Link 
                     to="/blog"
-                    className={location.pathname === '/blog' ? 'active' : ''}
+                    className={location.pathname === '/post' ? 'active' : ''}
                 >Blog
                 </Link>
     </nav>
