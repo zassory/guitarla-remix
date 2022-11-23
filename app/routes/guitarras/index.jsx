@@ -3,23 +3,11 @@ import { getGuitarras } from '~/models/guitarras.server';
 
 import { ListadoGuitarras } from '~/components/listado-guitarras';
 
-import styles from '~/styles/guitarras.css';
-
-
 export const meta = () => {
   return {
     title:'GuitarLA - Tienda de Guitarras',
     description:'GuitarLA - Nuestra colección de guitarras'
   }
-}
-
-export const links = () => {
-  return [
-    {
-      rel: 'stylesheet',
-      href: styles
-    }
-  ]
 }
 
 export async function loader(){  
@@ -30,10 +18,8 @@ export async function loader(){
 
 function Tienda() {
   const guitarras = useLoaderData();
-  return (
-    <main className='contenedor'>        
+  return (    
       <ListadoGuitarras  guitarras={guitarras} />
-    </main>
   )
 }
 
