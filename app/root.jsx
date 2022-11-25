@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
    Meta, //principio del html
    Links, //principio del html
@@ -11,7 +12,6 @@ import styles from '~/styles/index.css';
 import { Header } from '~/components/header';
 
 import { Footer } from '~/components/footer';
-import { isErrorResponse } from '@remix-run/react/dist/data';
 
 export const meta = () => {
     return (
@@ -52,9 +52,36 @@ export const links = () => {
 
 export default function App(){
 
+    const [ carrito , setCarrito ] = useState([]);
+
+    const agregarCarrito = ( guitarra ) => {
+                                              //elemento que itera  elemento recibido
+        if(carrito.some( ( guitarraState ) => guitarraState.id === guitarra.id )){
+            // Iterar sobre el arreglo, e identificar el elemento duplicado            
+            const carritoActualizado = carrito.map( ( guitarraState ) => {
+                if(guitarraState.id === guitarra.id){
+                    //Reescribir la cantidad
+                    // opcion 1 guitarraState.cantidad += guitarra.cantidad
+                    //guitarraState.cantidad = guitarraState.cantidad + guitarra.canitidad
+                    guitarraState.cantidad = guitarra.cantidad;
+                }
+                return guitarraState;
+            })
+            //Añadir al carrito
+            setCarrito( carritoActualizado );
+        }else{            
+            setCarrito([...carrito, guitarra]);
+        }
+    }
+
     return(
         <Document>
-            <Outlet />
+            <Outlet
+                context = {{
+                    agregarCarrito,
+                    carrito
+                }}
+            />
         </Document>
     )
 }

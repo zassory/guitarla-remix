@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLoaderData } from '@remix-run/react';
+import { useLoaderData , useOutletContext } from '@remix-run/react';
 import { getGuitarra } from '~/models/guitarras.server';
 
 //Es el parametro que recibe
@@ -33,12 +33,15 @@ export const meta = ({ data }) => {
     
 }
 
+//------------------------------------------------->
 const Guitarra = () => {
-    
+          
+  const { agregarCarrito } = useOutletContext();
   const [ cantidad , setCantidad ] = useState(0);
   
   const guitarra = useLoaderData();
   const { nombre , descripcion , imagen , precio } = guitarra.data[0].attributes
+  
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -55,11 +58,9 @@ const Guitarra = () => {
         precio,
         cantidad
     }
-
-    console.log(guitarraSeleccionada);
-
+    agregarCarrito( guitarraSeleccionada );
   }
-
+  
   return (
     <div className='contenedor guitarra'>
         <img className='imagen' src={ imagen.data.attributes.url } alt={`Imagen de la guitarra ${ nombre }`} />
