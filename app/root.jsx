@@ -86,7 +86,8 @@ export default function App(){
     }
 
     const eliminarGuitarra = id => {
-        setCarrito(carrito.filter( guitarraState => guitarraState.id !== id ));
+        const carritoActualizado = carrito.filter( guitarraState => guitarraState.id !== id );
+        setCarrito(carritoActualizado);
     }
 
     return(
