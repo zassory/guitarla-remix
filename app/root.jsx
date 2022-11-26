@@ -74,12 +74,29 @@ export default function App(){
         }
     }
 
+    const actualizarCantidad = ( guitarra ) => {
+        const carritoActualizado = carrito.map(  guitarraState  => {
+            if(guitarraState.id === guitarra.id){
+                guitarraState.cantidad = guitarra.cantidad;
+            }
+            return guitarraState;
+        })
+        //No es necesario el spread porque map te crea un nuevo arreglo
+        setCarrito(carritoActualizado);
+    }
+
+    const eliminarGuitarra = id => {
+        setCarrito(carrito.filter( guitarraState => guitarraState.id !== id ));
+    }
+
     return(
         <Document>
             <Outlet
                 context = {{
                     agregarCarrito,
-                    carrito
+                    carrito,
+                    actualizarCantidad,
+                    eliminarGuitarra
                 }}
             />
         </Document>
