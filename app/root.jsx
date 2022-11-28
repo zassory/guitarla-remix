@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import {
    Meta, //principio del html
    Links, //principio del html
@@ -52,12 +52,18 @@ export const links = () => {
 
 export default function App(){
 
-    const [ carrito , setCarrito ] = useState([]);
+    const carritoLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito')) ?? [] : null;
+
+    const [ carrito , setCarrito ] = useState(carritoLS);
+
+    useEffect( () => {
+        localStorage.setItem('carrito',JSON.stringify(carrito));
+    } , [ carrito ] );
 
     const agregarCarrito = ( guitarra ) => {
                                               //elemento que itera  elemento recibido
         if(carrito.some( ( guitarraState ) => guitarraState.id === guitarra.id )){
-            // Iterar sobre el arreglo, e identificar el elemento duplicado            
+            // Iterar sobre el arreglo, e identificar el elemento duplicado
             const carritoActualizado = carrito.map( ( guitarraState ) => {
                 if(guitarraState.id === guitarra.id){
                     //Reescribir la cantidad
